@@ -1,0 +1,142 @@
+[
+    {
+        "model": "menu.menuitem",
+        "pk": 1,
+        "fields": {
+            "name": "Собакам",
+            "parent": null,
+            "url": "/dogs/",
+            "named_url": "dogs"
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 2,
+        "fields": {
+            "name": "Корма",
+            "parent": 1,
+            "url": "/dogs/food/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 3,
+        "fields": {
+            "name": "Намордники",
+            "parent": 1,
+            "url": "/dogs/muzzles/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 4,
+        "fields": {
+            "name": "Игрушки",
+            "parent": 1,
+            "url": "/dogs/toys/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 5,
+        "fields": {
+            "name": "Кошкам",
+            "parent": null,
+            "url": "/cats/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 6,
+        "fields": {
+            "name": "Птицам",
+            "parent": null,
+            "url": "/birds/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 7,
+        "fields": {
+            "name": "Royal Canin",
+            "parent": 2,
+            "url": "/dogs/food/royal-canin/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 8,
+        "fields": {
+            "name": "Hill's",
+            "parent": 2,
+            "url": "/dogs/food/hills/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 9,
+        "fields": {
+            "name": "Proplan",
+            "parent": 2,
+            "url": "/dogs/food/proplan/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 10,
+        "fields": {
+            "name": "Monge",
+            "parent": 2,
+            "url": "/dogs/food/monge/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 11,
+        "fields": {
+            "name": "Grandorf",
+            "parent": 2,
+            "url": "/dogs/food/grandorf/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 12,
+        "fields": {
+            "name": "Farmina",
+            "parent": 2,
+            "url": "/dogs/food/farmina/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 13,
+        "fields": {
+            "name": "Purina",
+            "parent": 2,
+            "url": "/dogs/food/purina/",
+            "named_url": null
+        }
+    },
+    {
+        "model": "menu.menuitem",
+        "pk": 14,
+        "fields": {
+            "name": "Ajo",
+            "parent": 2,
+            "url": "/dogs/food/ajo/",
+            "named_url": null
+        }
+    }
+]
