@@ -8,7 +8,7 @@ def index(request):
 
 def product_detail(request, animal, subcategory, product):
     context = {
-        'category': animal,
+        'animal': animal,
         'subcategory': subcategory,
         'product': product,
         'request': request
