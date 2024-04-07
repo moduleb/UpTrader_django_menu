@@ -9,7 +9,10 @@
 {% load menu_tags %}
 
 <h1><a href="/">Index</a></h1>
-{% draw_menu %}
+{% draw_menu 'main' %}
+
+<h1>Second</h1>
+{% draw_menu 'second' %}
 
 </body>
 </html>

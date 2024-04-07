@@ -5,8 +5,9 @@ from django.urls import reverse
 class MenuItem(models.Model):
     name = models.CharField(max_length=200)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-    url = models.CharField(max_length=200, null=True, blank=True)
+    url = models.CharField(max_length=200)
     named_url = models.CharField(max_length=200, null=True, blank=True)
+    menu_name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name

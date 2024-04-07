@@ -7,15 +7,12 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def draw_menu(context, parent_id=None):
+def draw_menu(context, menu_name, parent_id=None):
     request: WSGIRequest = context['request']
 
-    if parent_id:
-        menu_items = MenuItem.objects.filter(parent_id=parent_id)
-    else:
-        menu_items = MenuItem.objects.filter(parent__isnull=True)
-    html = '<ul>'
+    menu_items = MenuItem.objects.filter(parent_id=parent_id, menu_name=menu_name)
 
+    html = '<ul>'
     for item in menu_items:
 
         is_active = False
@@ -37,7 +34,7 @@ def draw_menu(context, parent_id=None):
 
         if item.children.exists() and is_active_category:
             # Рекурсивно вызываем draw_menu для дочерних элементов, передавая идентификатор текущего элемента
-            html += draw_menu(context, item.id)
+            html += draw_menu(context, menu_name, item.id)
         html += '</li>'
     html += '</ul>'
     return mark_safe(html)
