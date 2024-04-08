@@ -1,18 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Menu</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
 {% load menu_tags %}
 
-<h1><a href="/">Index</a></h1>
-{% draw_menu 'main' %}
+<div class="wrapper">
+    <div class="menu">
+        {% draw_menu 'main' %}
+    </div>
 
-<h1>Second</h1>
-{% draw_menu 'second' %}
+    <div class="menu">
+        {% draw_menu 'second' %}
+    </div>
+
+</div>
 
 </body>
 </html>

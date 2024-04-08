@@ -1,4 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+
+
+def favicon(request):
+    # Возвращаем пустой ответ с кодом 204 (No Content)
+    return HttpResponse(status=204)
 
 def index(request):
     context = {
