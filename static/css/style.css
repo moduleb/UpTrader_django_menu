@@ -1,50 +1,47 @@
-
-/* Стили для основного меню */
-.menu {
-    list-style-type: none; /* Убираем маркеры списка */
-    margin: 0;
-    padding: 0;
-    background-color: #333; /* Фон меню */
+*{
+    margin:0;
+    padding:0;
+    text-decoration:none
 }
 
-/* Стили для элементов списка в меню */
-.menu li {
-    position: relative; /* Позиционирование для вложенных меню */
-    display: inline-block; /* Элементы списка выстраиваются горизонтально */
+.wrapper{
+    padding: 10px;
 }
 
-/* Стили для ссылок в меню */
-.menu li a {
-    display: block; /* Сделать ссылку блочным элементом */
-    color: white; /* Цвет текста */
-    text-align: center; /* Выравнивание текста по центру */
-    padding: 14px 16px; /* Отступы вокруг текста */
-    text-decoration: none; /* Убираем подчеркивание */
+ul{
+    list-style-type: none;
 }
 
-/* Стили для активного элемента меню */
-.menu li a:hover, .menu li a:focus {
-    background-color: #111; /* Цвет фона при наведении или фокусе */
+
+
+
+
+a:hover {
+    position: relative;
+    top: 1px;
 }
 
-/* Стили для вложенного меню */
-.menu li ul {
-    display: none; /* Скрываем вложенное меню по умолчанию */
-    position: absolute; /* Позиционирование относительно родительского элемента */
-    background-color: #333; /* Фон вложенного меню */
+
+.active{
+    color:red
 }
 
-/* Стили для видимого вложенного меню */
-.menu li:hover > ul {
-    display: block; /* Показываем вложенное меню при наведении на родительский элемент */
+.sub{
+    display: block;
+    padding: 2px 10px;
+    color:blue;
 }
 
-/* Дополнительные стили для вложенных элементов списка */
-.menu li ul li {
-    display: block; /* Элементы списка вложенного меню выстраиваются вертикально */
+.root{
+    display: block;
+    padding: 3px 0px;
+    font-size:120%;
+    color:green;
 }
 
-/* Стили для ссылок в вложенном меню */
-.menu li ul li a {
-    padding: 14px 16px; /* Отступы вокруг текста */
+.item{
+    display: block;
+    padding: 0px 15px;
+    font-size:85%;
+    color: blue
 }
