@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
 *{
     margin:0;
     padding:0;
-    text-decoration:none
+    text-decoration:none;
+    color:white;
+}
+
+body {
+ font-family: 'Roboto', sans-serif;
 }
 
 .wrapper{
@@ -12,36 +20,54 @@ ul{
     list-style-type: none;
 }
 
-
-
-
-
-a:hover {
-    position: relative;
-    top: 1px;
+.menu-wrap{
+  width: 262px;
+  background: #408E61;
+  padding: 0px;
 }
 
-
-.active{
-    color:red
+li .root{
+   display:block;
+   padding: 20px;
+   font-size:110%;
 }
 
-.sub{
-    display: block;
-    padding: 2px 10px;
-    color:blue;
+li .sub{
+  display:block;
+  background:#45A17B;
+  padding:15px 20px;
+  font-size:100%;
 }
 
-.root{
-    display: block;
-    padding: 3px 0px;
-    font-size:120%;
-    color:green;
+li .item{
+  display:block;
+  background:#45A17B;
+  padding:12px 32px;
+  font-size:90%;
 }
 
-.item{
-    display: block;
-    padding: 0px 15px;
-    font-size:85%;
-    color: blue
+.root.active{
+  background: #33714D;
+  border-radius: 10px;
+}
+
+.sub.active{
+  background: #50AD76;
+}
+
+.item.active{
+  background: #50AD76;
+}
+
+li :hover{
+  cursor: pointer;
+}
+
+li .root:hover{
+  background: #33714D;
+}
+
+li .sub:hover,
+li .item:hover {
+ background: #50AD76;
 }

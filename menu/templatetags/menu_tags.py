@@ -12,17 +12,17 @@ from ..models import MenuItem
 register = template.Library()
 
 
-class Subcategory(Enum):
+class ClassEnum(Enum):
     ROOT = "root"
     SUB = "sub"
     ITEM = "item"
+    ACTIVE = "active"
 
 
 @dataclass
 class Data_:
     menu_name: str
     request: WSGIRequest
-    class_: Subcategory = Subcategory.ROOT
     was_active: bool = False
     html: Optional[str] = ''
     all_menu_items: QuerySet = None
@@ -36,39 +36,45 @@ def _recursion(data: Data_, parent_id: int = None) -> Data_:
     data.html += '<ul>'
 
     for item in menu_items:
+
+        if data.request.path == '/':
+            data.was_active = True
+
         is_active = data.request.path == item.get_absolute_url()
-        data.class_ = _check_level(item)
 
         if is_active:
-            data.html += _generate_list_item_html(data, item, is_active)
+            data.html += _generate_list_item_html(item, is_active)
             data.was_active = True
-            data = _recursion(data, item.id)
+            if item.children.exists():
+                data = _recursion(data, item.id)
         else:
-            data.html += _generate_list_item_html(data, item, is_active)
+            data.html += _generate_list_item_html(item, is_active)
 
-        if not data.was_active:
+        if not data.was_active and item.children.exists():
             data = _recursion(data, item.id)
 
     data.html += '</ul>'
     return data
 
 
-def _generate_list_item_html(data, item, is_active_item) -> str:
-    classes = data.class_.value
+def _generate_list_item_html( item, is_active_item) -> str:
+
+    classes: str = _check_level(item).value
+
     if is_active_item:
-        classes = " active"
+        classes += " " + ClassEnum.ACTIVE.value
 
     return mark_safe(
         f'<li><a class="{classes}" href="{item.get_absolute_url()}">{item.name}</a></li>')
 
 
-def _check_level(item: MenuItem) -> Subcategory:
+def _check_level(item: MenuItem) -> ClassEnum:
     if not item.parent:
-        return Subcategory.ROOT
+        return ClassEnum.ROOT
     elif not item.parent.parent:
-        return Subcategory.SUB
+        return ClassEnum.SUB
     else:
-        return Subcategory.ITEM
+        return ClassEnum.ITEM
 
 
 @register.simple_tag(takes_context=True)
