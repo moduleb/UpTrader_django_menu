@@ -23,7 +23,7 @@ ul{
 .menu-wrap{
   width: 262px;
   background: #408E61;
-  padding: 0px;
+  margin: 10px;
 }
 
 li .root{

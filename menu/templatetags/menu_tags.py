@@ -37,6 +37,7 @@ def _recursion(data: Data_, parent_id: int = None) -> Data_:
 
     for item in menu_items:
 
+        # Сворачиваем меню при запросе без параметров
         if data.request.path == '/':
             data.was_active = True
 

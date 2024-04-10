@@ -1,4 +1,5 @@
 {% load static %}
+{% load menu_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,18 +8,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-
-{% load menu_tags %}
-
 <div class="wrapper">
     <div class="menu-wrap">
         {% draw_menu 'main' %}
     </div>
-
-    <div class="menu-wrap">
-    </div>
-
 </div>
-
 </body>
 </html>
