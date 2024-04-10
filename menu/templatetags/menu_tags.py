@@ -40,15 +40,16 @@ def _recursion(data: Data_, parent_id: int = None) -> Data_:
         if data.request.path == '/':
             data.was_active = True
 
-        is_active = data.request.path == item.get_absolute_url()
+        is_active_item = data.request.path == item.get_absolute_url()
+        is_active_category = item.get_absolute_url() in data.request.path
 
-        if is_active:
-            data.html += _generate_list_item_html(item, is_active)
+        if is_active_item:
+            data.html += _generate_list_item_html(item, is_active_item)
             data.was_active = True
             if item.children.exists():
                 data = _recursion(data, item.id)
         else:
-            data.html += _generate_list_item_html(item, is_active)
+            data.html += _generate_list_item_html(item, is_active_category)
 
         if not data.was_active and item.children.exists():
             data = _recursion(data, item.id)
@@ -57,8 +58,7 @@ def _recursion(data: Data_, parent_id: int = None) -> Data_:
     return data
 
 
-def _generate_list_item_html( item, is_active_item) -> str:
-
+def _generate_list_item_html(item, is_active_item) -> str:
     classes: str = _check_level(item).value
 
     if is_active_item:
