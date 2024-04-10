@@ -17,7 +17,7 @@ for item in queryset:
     if not item.url:
         url = str(uuid4())
     else:
-        url = item.url
+        url = str(item.url).lstrip("/")
 
     urlpatterns.append(path(url, views.index, name=item.named_url))
 

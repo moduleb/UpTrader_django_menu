@@ -6,7 +6,8 @@
       "name": "Собакам",
       "parent": null,
       "url": "/dogs/",
-      "named_url": "dogs"
+      "named_url": "dogs",
+      "menu_name": "main_menu"
     }
   },
   {
@@ -16,7 +17,8 @@
       "name": "Кошкам",
       "parent": null,
       "url": "/cats/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -26,7 +28,8 @@
       "name": "Птицам",
       "parent": null,
       "url": "/birds/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -36,7 +39,8 @@
       "name": "Корма",
       "parent": 1,
       "url": "/dogs/food/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -46,7 +50,8 @@
       "name": "Намордники",
       "parent": 1,
       "url": "/dogs/muzzles/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -56,7 +61,8 @@
       "name": "Игрушки",
       "parent": 1,
       "url": "/dogs/toys/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -66,7 +72,8 @@
       "name": "Корма",
       "parent": 2,
       "url": "/cats/food/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -76,7 +83,8 @@
       "name": "Наполнители",
       "parent": 2,
       "url": "/cats/litter/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -86,7 +94,8 @@
       "name": "Игрушки",
       "parent": 2,
       "url": "/cats/toys/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -96,7 +105,8 @@
       "name": "Корма",
       "parent": 3,
       "url": "/birds/food/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -106,7 +116,8 @@
       "name": "Клетки",
       "parent": 3,
       "url": "/birds/cages/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -116,7 +127,8 @@
       "name": "Игрушки",
       "parent": 3,
       "url": "/birds/toys/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -126,7 +138,8 @@
       "name": "Royal Canin",
       "parent": 4,
       "url": "/dogs/food/royal-canin/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -136,7 +149,8 @@
       "name": "Hill's",
       "parent": 4,
       "url": "/dogs/food/hills/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -146,7 +160,8 @@
       "name": "Proplan",
       "parent": 4,
       "url": "/dogs/food/proplan/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -156,7 +171,8 @@
       "name": "Monge",
       "parent": 4,
       "url": "/dogs/food/monge/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -166,7 +182,8 @@
       "name": "Grandorf",
       "parent": 4,
       "url": "/dogs/food/grandorf/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -176,7 +193,8 @@
       "name": "Farmina",
       "parent": 4,
       "url": "/dogs/food/farmina/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -186,7 +204,8 @@
       "name": "Purina",
       "parent": 4,
       "url": "/dogs/food/purina/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -196,7 +215,8 @@
       "name": "Ajo",
       "parent": 4,
       "url": "/dogs/food/ajo/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -206,7 +226,8 @@
       "name": "Royal Canin",
       "parent": 7,
       "url": "/cats/food/royal-canin/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -216,7 +237,8 @@
       "name": "Hill's",
       "parent": 7,
       "url": "/cats/food/hills/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -226,7 +248,8 @@
       "name": "Proplan",
       "parent": 7,
       "url": "/cats/food/proplan/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -236,7 +259,8 @@
       "name": "Monge",
       "parent": 7,
       "url": "/cats/food/monge/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -246,7 +270,8 @@
       "name": "Grandorf",
       "parent": 7,
       "url": "/cats/food/grandorf/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -256,7 +281,8 @@
       "name": "Farmina",
       "parent": 7,
       "url": "/cats/food/farmina/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -266,7 +292,8 @@
       "name": "Purina",
       "parent": 7,
       "url": "/cats/food/purina/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -276,7 +303,8 @@
       "name": "Ajo",
       "parent": 7,
       "url": "/cats/food/ajo/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -286,7 +314,8 @@
       "name": "Royal Canin",
       "parent": 10,
       "url": "/birds/food/royal-canin/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -296,7 +325,8 @@
       "name": "Hill's",
       "parent": 10,
       "url": "/birds/food/hills/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -306,7 +336,8 @@
       "name": "Proplan",
       "parent": 10,
       "url": "/birds/food/proplan/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -316,7 +347,8 @@
       "name": "Monge",
       "parent": 10,
       "url": "/birds/food/monge/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -326,7 +358,8 @@
       "name": "Grandorf",
       "parent": 10,
       "url": "/birds/food/grandorf/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -336,7 +369,8 @@
       "name": "Farmina",
       "parent": 10,
       "url": "/birds/food/farmina/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -346,7 +380,8 @@
       "name": "Purina",
       "parent": 10,
       "url": "/birds/food/purina/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -356,7 +391,8 @@
       "name": "Ajo",
       "parent": 10,
       "url": "/birds/food/ajo/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -366,7 +402,8 @@
       "name": "Впитывающий",
       "parent": 8,
       "url": "/cats/litter/absorbent/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -376,7 +413,8 @@
       "name": "Комкующийся",
       "parent": 8,
       "url": "/cats/litter/clumping/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   },
   {
@@ -386,7 +424,8 @@
       "name": "Силикагелевый",
       "parent": 8,
       "url": "/cats/litter/silica-gel/",
-      "named_url": null
+      "named_url": null,
+      "menu_name": "main_menu"
     }
   }
 ]
