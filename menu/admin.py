@@ -26,6 +26,8 @@ class MenuItemAdmin(admin.ModelAdmin):
         else:
             return (MenuFilter, RootFilter)
 
+
+
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
 
@@ -35,9 +37,15 @@ class MenuItemAdmin(admin.ModelAdmin):
         sub_cat = filters.get('sub_cat', '')
 
         # Скрываем поле url
-        form.base_fields['url'] = CharField(widget=HiddenInput())
+        # form.base_fields['url'] = CharField(widget=HiddenInput())
 
         item = MenuItem.objects.filter(id=root_cat).first()
+
+        if menu_name:
+            queryset = MenuItem.objects.filter(parent_id=root_cat, menu_name=menu_name)
+        else:
+            queryset = MenuItem.objects.filter(parent_id=root_cat)
+
 
         if root_cat:
             label = "SubCategory:"
@@ -52,10 +60,7 @@ class MenuItemAdmin(admin.ModelAdmin):
             label = "Category:"
 
 
-        if menu_name:
-            queryset = MenuItem.objects.filter(parent_id=root_cat, menu_name=menu_name)
-        else:
-            queryset = MenuItem.objects.filter(parent_id=root_cat)
+
 
         if not menu_name:
             form.base_fields['menu_name'] = ModelChoiceField(
@@ -77,7 +82,7 @@ class MenuItemAdmin(admin.ModelAdmin):
             label=label,
         )
 
-        order = ['name', "named_url", 'menu_name', "category", 'parent']
+        order = ['name', "url", "named_url", 'menu_name', "category", 'parent']
         form.base_fields = {k: form.base_fields[k] for k in order}
 
         return form

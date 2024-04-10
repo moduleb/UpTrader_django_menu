@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 
@@ -12,10 +13,10 @@ class MenuItem(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        if self.url:
-            return self.url
-        elif self.named_url:
-            return reverse(self.named_url)
-        else:
-            return '#'
+    def clean(self):
+        if not self.url and not self.named_url:
+            raise ValidationError("Оба поля url и named_url не могут быть пустыми одновременно.")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
