@@ -29,7 +29,7 @@ class RootFilter(admin.SimpleListFilter):
 
 class CategoryFilter(admin.SimpleListFilter):
     title = 'Category'
-    parameter_name = 'category'
+    parameter_name = 'sub_cat'
 
     def lookups(self, request:WSGIRequest, model_admin):
         menu_name = request.GET.get('menu_name')

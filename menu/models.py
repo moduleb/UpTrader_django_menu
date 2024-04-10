@@ -2,6 +2,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 
+class MenuName(models.Model):
+    name = models.CharField(max_length=200)
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=200)

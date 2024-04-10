@@ -4,7 +4,7 @@ from menu.models import MenuItem
 
 
 class MenuItemAdminForm(ModelForm):
-    category = CharField(label='Категория', required=False)
+    category = CharField(label='Subcategory', required=False)
 
     class Meta:
         model = MenuItem
