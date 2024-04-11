@@ -9,64 +9,6 @@ from menu.admin_addons.form import MenuItemAdminForm
 from menu.models import MenuItem
 
 
-@dataclass
-class Data_:
-    form: ModelForm
-    queryset: QuerySet
-    menu_name: str = None
-    root_cat: int = None
-    sub_cat: int = None
-
-
-def _create_new_menu_name(data):
-    data.form.base_fields['menu_name'] = CharField(required=True, label="New Menu Name")
-
-def _set_parent(data: Data_, required=False, disabled=False, label="Subcategory", init: bool = None) -> None:
-    if init:
-        init = data.root_cat
-
-    if data.root_cat:
-        queryset = data.queryset.filter(parent_id=data.root_cat)
-    else:
-        queryset = data.queryset
-
-    data.form.base_fields['parent'] = ModelChoiceField(
-        queryset=queryset,
-        label=label,
-        required=required,
-        disabled=disabled,
-        initial=init
-    )
-
-
-def _show_category(data: Data_, init: bool = None, disabled=False) -> None:
-    if init:
-        init = data.root_cat
-
-    data.form.base_fields['category'] = ModelChoiceField(
-        queryset=data.queryset,
-        label="Category",
-        required=False,
-        disabled=disabled,
-        initial=init,
-        widget=HiddenInput()
-    )
-
-
-def _hide_category(data):
-    data.form.base_fields['category'] = CharField(widget=HiddenInput())
-
-
-def _show_menu_name(data: Data_) -> None:
-    data.form.base_fields['menu_name'] = ChoiceField(
-        choices=[(data.menu_name, data.menu_name)],
-        required=True,
-        label='Menu Name',
-        initial=data.menu_name,
-        disabled=True
-    )
-
-
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'parent', 'url', 'named_url')
@@ -87,6 +29,8 @@ class MenuItemAdmin(admin.ModelAdmin):
             return (MenuFilter, RootFilter)
 
     def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+
         filters = request.session.get('admin_filters', '')
         menu_name = filters.get('menu_name')
         root_cat = filters.get('root_cat')
@@ -102,7 +46,7 @@ class MenuItemAdmin(admin.ModelAdmin):
             queryset = queryset.filter(menu_name=menu_name)
 
         data = Data_(
-            form=super().get_form(request, obj, **kwargs),
+            form=form,
             queryset=queryset,
             menu_name=menu_name,
             root_cat=root_cat,
@@ -111,25 +55,92 @@ class MenuItemAdmin(admin.ModelAdmin):
 
         if root_cat and sub_cat:
             _show_menu_name(data)
-            _show_category(data)
-            _set_parent(data, init=True)
+            _show_category(data, disabled=True)
+            _set_parent(data, init=True, required=True)
 
         elif root_cat:
             _show_menu_name(data)
-            _show_category(data)
-            _set_parent(data)
+            _hide_category(data)
+            _set_parent(data, label="Category", root_query=True, required=True, init=True)
 
         elif menu_name and not root_cat:
             _show_menu_name(data)
             _hide_category(data)
-            _set_parent(data, label="Category")
+            _set_parent(data, label="Category", root_query=True)
 
         elif not menu_name:
-            _hide_category(data)
-            _set_parent(data, disabled=True, label="Category")
             _create_new_menu_name(data)
+            _hide_category(data)
+            _set_parent(data, label="Category", disabled=True)
 
         order = ['name', "url", "named_url", 'menu_name', 'category', "parent"]
         data.form.base_fields = {k: data.form.base_fields[k] for k in order}
 
         return data.form
+
+
+@dataclass
+class Data_:
+    form: ModelForm
+    queryset: QuerySet
+    menu_name: str = None
+    root_cat: int = None
+    sub_cat: int = None
+
+
+def _create_new_menu_name(data):
+    data.form.base_fields['menu_name'] = CharField(required=True, label="Menu Name")
+
+
+def _set_parent(data: Data_, required=False, disabled=False, label="Subcategory", root_query=False, init=None) -> None:
+    if root_query:
+        queryset = data.queryset.filter(parent_id=None)
+    else:
+        if data.root_cat:
+            queryset = data.queryset.filter(parent_id=data.root_cat)
+        else:
+            queryset = data.queryset
+
+    if init:
+        if root_query:
+            init = data.root_cat
+        elif data.sub_cat:
+            init = data.sub_cat
+        else:
+            init = queryset.first().id
+
+    data.form.base_fields['parent'] = ModelChoiceField(
+        queryset=queryset,
+        label=label,
+        required=required,
+        disabled=disabled,
+        initial=init
+    )
+
+
+def _show_category(data: Data_, disabled=False) -> None:
+    data.form.base_fields['category'] = ModelChoiceField(
+        queryset=data.queryset,
+        label="Category",
+        required=False,
+        disabled=disabled,
+        initial=data.root_cat,
+    )
+
+
+def _hide_category(data):
+    data.form.base_fields['category'] = CharField(required=False, widget=HiddenInput())
+
+
+def _hide_parent(data):
+    data.form.base_fields['parent'] = CharField(required=False, widget=HiddenInput())
+
+
+def _show_menu_name(data: Data_) -> None:
+    data.form.base_fields['menu_name'] = ChoiceField(
+        choices=[(data.menu_name, data.menu_name)],
+        required=True,
+        label='Menu Name',
+        initial=data.menu_name,
+        disabled=True
+    )
