@@ -24,7 +24,9 @@ class RootFilter(admin.SimpleListFilter):
         parent_id = self.value()
         if parent_id:
             queryset_filtered = queryset.filter(parent_id=parent_id)
+
             if queryset_filtered:
+                print(queryset_filtered)
                 return queryset_filtered
             else:
                 return queryset.none()
@@ -56,8 +58,7 @@ class CategoryFilter(admin.SimpleListFilter):
                 return queryset_filtered
             else:
                 return queryset
-        else:
-            return queryset.none()
+
 
 
 class MenuFilter(admin.SimpleListFilter):
