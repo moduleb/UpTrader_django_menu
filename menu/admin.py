@@ -11,7 +11,7 @@ from menu.models import MenuItem
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent', 'url', 'named_url')
+    list_display = ('name', 'parent', 'url')
     search_fields = ('name',)
     form = MenuItemAdminForm
 
