@@ -76,7 +76,7 @@ class MenuItemAdmin(admin.ModelAdmin):
             _hide_category(data)
             _set_parent(data, label="Category", disabled=True)
 
-        order = ['name', "url", "named_url", 'menu_name', 'category', "parent"]
+        order = ['name', "url", 'menu_name', 'category', "parent"]
         data.form.base_fields = {k: data.form.base_fields[k] for k in order}
 
         return data.form
