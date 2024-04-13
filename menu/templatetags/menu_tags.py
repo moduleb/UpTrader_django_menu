@@ -5,7 +5,6 @@ from typing import Optional
 from django import template
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import QuerySet
-from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 from ..models import MenuItem
@@ -18,6 +17,15 @@ class ClassEnum(Enum):
     SUB = "sub"
     ITEM = "item"
     ACTIVE = "active"
+
+
+def _check_level(item: MenuItem) -> ClassEnum:
+    if not item.parent:
+        return ClassEnum.ROOT
+    elif not item.parent.parent:
+        return ClassEnum.SUB
+    else:
+        return ClassEnum.ITEM
 
 
 @dataclass
@@ -42,17 +50,16 @@ def _recursion(data: Data_, parent_id: int = None) -> Data_:
         if data.request.path == '/':
             data.was_active = True
 
-        url = _get_url(item)
-        is_active_item = url == data.request.path
-        is_active_category = url in data.request.path
+        is_active_item = item.url == data.request.path
+        is_active_category = item.url in data.request.path
 
         if is_active_item:
-            data.html += _generate_list_item_html(item, url, is_active_item)
+            data.html += _generate_list_item_html(item, is_active_item)
             data.was_active = True
             if item.children.exists():
                 data = _recursion(data, item.id)
         else:
-            data.html += _generate_list_item_html(item, url, is_active_category)
+            data.html += _generate_list_item_html(item, is_active_category)
 
         if not data.was_active and item.children.exists():
             data = _recursion(data, item.id)
@@ -60,29 +67,21 @@ def _recursion(data: Data_, parent_id: int = None) -> Data_:
     data.html += '</ul>'
     return data
 
-def _get_url(item):
-    if item.url:
-        return "/" + str(item.url).lstrip('/')
-    else:
-        return reverse(item.named_url)
 
-def _generate_list_item_html(item, url, is_active_item) -> str:
+def _get_link(item):
+    if item.named_url:
+        return "{% url 'named' name=" + item.named_url + " %}"
+    elif item.url:
+        return "/" + str(item.url).lstrip('/')
+
+
+def _generate_list_item_html(item, is_active_item) -> str:
     classes: str = _check_level(item).value
 
     if is_active_item:
         classes += " " + ClassEnum.ACTIVE.value
-
     return mark_safe(
-        f'<li><a class="{classes}" href="{url}">{item.name}</a></li>')
-
-
-def _check_level(item: MenuItem) -> ClassEnum:
-    if not item.parent:
-        return ClassEnum.ROOT
-    elif not item.parent.parent:
-        return ClassEnum.SUB
-    else:
-        return ClassEnum.ITEM
+        f'<li><a class="{classes}" href="{item.url}">{item.name}</a></li>')
 
 
 @register.simple_tag(takes_context=True)

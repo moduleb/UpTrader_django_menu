@@ -23,10 +23,13 @@ class MenuItemAdmin(admin.ModelAdmin):
 
     def get_list_filter(self, request):
         # Показываем фильтр подкатегорий если выбрана основная категория
-        if 'root_cat' in request.GET:
-            return (MenuFilter, RootFilter, CategoryFilter)
-        else:
-            return (MenuFilter, RootFilter)
+        filters = (MenuFilter, RootFilter)
+        root_cat = request.GET.get('root_cat', None)
+        if root_cat:
+            has_children = MenuItem.objects.filter(id=root_cat).first().children.exists()
+            if has_children:
+                filters = (MenuFilter, RootFilter, CategoryFilter)
+        return filters
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
